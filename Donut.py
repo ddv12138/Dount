@@ -25,9 +25,9 @@ ax.plot([0, 0], [0, 0], [-distance, distance])
 plt.axis()
 
 # 半径
-r = 2.0
+r = 3
 # 圆心
-a, b = (10.0, 10.0)
+a, b = (8.0, 8.0)
 # 画出圆心点
 #ax.scatter(a, b, 0.0)
 
@@ -35,7 +35,9 @@ a, b = (10.0, 10.0)
 ax.scatter(0, 30, -10)
 
 # 画初始圆
-theta = np.arange(0.0, 2 * np.pi, 1.0)
+degree_rotate = math.pi/10
+theta = np.arange(0, math.pi*2, degree_rotate)
+#theta = np.arange(0.0, 2 * np.pi, 0.5)
 x = a + r * np.cos(theta)
 y = b + r * np.sin(theta)
 z = 0.0
@@ -67,43 +69,47 @@ def flat(x, y, z):
 
 
 def flat_test(x, y, z):
-    matrix = [[-1 for i in range(52)] for i in range(51)]
-    x = x+25
-    y = y+25
+    size = 80
+    matrix = [[None for i in range(size)] for i in range(size)]
+
+    x = (x+20)*2
+    y = (y+15)*2
+    #x = x * 2;y = y * 2
+
     for i in range(len(x)):
-        for j in range(len(y)):
-            tmp_x = round(x[i])
-            tmp_y = round(x[j])
-            if (matrix[tmp_x][tmp_y] > 0 and matrix[tmp_x][tmp_y] > z[tmp_x]) or matrix[tmp_x][tmp_y] < 0:
-                matrix[tmp_x][tmp_y] = z[tmp_x]
+
+        tmp_x = round(x[i])
+        tmp_y = round(y[i])
+
+        if tmp_x >= size or tmp_y >= size:
+            continue
+
+        # if (matrix[tmp_x][tmp_y] != None and matrix[tmp_x][tmp_y] < z[tmp_x]) or matrix[tmp_x][tmp_y] == None:
+        if (matrix[tmp_x][tmp_y] != None and matrix[tmp_x][tmp_y] < z[i]) or matrix[tmp_x][tmp_y] == None:
+            # print((tmp_x,tmp_y))
+            matrix[tmp_x][tmp_y] = z[i]
+
     print_matrix(matrix)
 
+
 def print_matrix(matrix):
+    str = ''
     for x in range(len(matrix)):
         for y in range(len(matrix[x])):
-            if matrix[x][y]>0:
-                print(".",end=' ')
+            if matrix[x][y] != None:
+                str += ". "
             else:
-                print(" ",end=' ')
-        print()
-
-def flat_ascii(num):
-    newX = [" "]*51
-    newY = [" "]*51
-    newZ = [" "]*51
-
-    for i in range(len(newX)):
-        for j in range(len(newY)):
-            if i == num and j == num:
-                print("*  ", end='')
-            else:
-                print(".  ", end='')
-        print()
+                str += "  "
+        str += "\n"
+    print(str)
 
 
-for i in range(0, 12):
-    cood = rotate_y(x, y, z, degree=math.pi / 6*i)
-    orgin_cood = rotate_y(a, b, 0, degree=math.pi / 6*i)
+degree_rotate = math.pi/16
+
+for i in np.arange(0, math.pi*2, degree_rotate):
+
+    cood = rotate_y(x, y, z, degree=i)
+    orgin_cood = rotate_y(a, b, 0, degree=i)
     coodX = np.hstack((coodX, cood[0]))
     coodY = np.hstack((coodY, cood[1]))
     coodZ = np.hstack((coodZ, cood[2]))
@@ -116,19 +122,30 @@ def test():
         time.sleep(0.1)
 
 
-def main():
-    os.system("cls")
-    #ax.scatter(newCood[0], newCood[1], newCood[2], c='g')
-    # newCood = flat(newCood[0], newCood[1], newCood[2])
-    # ax.scatter(newCood[0], newCood[1], newCood[2], c='r')
-    # plt.show()
-    for _ in range(10):
-        os.system("cls")
-        newCood = rotate_z(coodX, coodY, coodZ, degree=math.pi/6)
-        newCood = rotate_x(newCood[0], newCood[1], newCood[2], degree=math.pi/3)
+def drew():
+    ax.scatter(coodX, coodY, coodZ, c='g')
+    newCood = rotate_z(coodX, coodY, coodZ, degree=math.pi/6)
+    ax.scatter(newCood[0], newCood[1], newCood[2], c='g')
+    plt.show()
+
+
+def drew2():
+    degree = math.pi/36
+    newCood = rotate_z(coodX, coodY, coodZ, degree=degree)
+    while True:
+        print("\x1b\x63", end="")
+        # os.system("cls")
+        newCood = rotate_x(newCood[0], newCood[1], newCood[2], degree=degree)
+        newCood = rotate_y(newCood[0], newCood[1], newCood[2], degree=degree)
         flat_test(newCood[0], newCood[1], newCood[2])
-        time.sleep(0.5)
-    # test()
+        time.sleep(0.1)
+
+
+def main():
+    # os.system("clear")
+    print("\x1b\x63", end="")
+    # drew()
+    drew2()
 
 
 if __name__ == '__main__':
