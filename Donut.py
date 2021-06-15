@@ -5,7 +5,7 @@ import time
 # 半径
 r = 3
 # 圆心
-a, b = (8.0, 8.0)
+a, b = (7.0, 7.0)
 
 # 光源
 # ax.scatter(0, 30, -10)
@@ -58,6 +58,10 @@ def flat_test(x, y, z):
             continue
 
         if (matrix[tmp_x][tmp_y] != None and matrix[tmp_x][tmp_y] < z[i]) or matrix[tmp_x][tmp_y] == None:
+            # dot_product = x[i]*0+y[i]*30-z[i]*10
+            # if dot_product < 0:
+            #     print(dot_product)
+            #     continue
             matrix[tmp_x][tmp_y] = z[i]
 
     print_matrix(matrix)
@@ -84,6 +88,7 @@ for i in np.arange(0, math.pi*2, degree_rotate):
     coodX = np.hstack((coodX, cood[0]))
     coodY = np.hstack((coodY, cood[1]))
     coodZ = np.hstack((coodZ, cood[2]))
+
 
 def drew2():
     degree = math.pi/36
