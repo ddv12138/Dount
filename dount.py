@@ -3,7 +3,7 @@ import math
 import time
 
 # 半径
-r = 3
+r = 4
 # 圆心
 a, b = (7.0, 7.0)
 
@@ -11,7 +11,7 @@ a, b = (7.0, 7.0)
 # ax.scatter(0, 30, -10)
 
 # 画初始圆
-degree_rotate = math.pi/10
+degree_rotate = math.pi/8
 theta = np.arange(0, math.pi*2, degree_rotate)
 x = a + r * np.cos(theta)
 y = b + r * np.sin(theta)
@@ -44,17 +44,17 @@ def flat(x, y, z):
 
 def flat_test(x, y, z):
     size = 80
-    matrix = [[None for i in range(size)] for i in range(size)]
+    matrix = [[None for i in range(80)] for i in range(60)]
 
-    x = (x+20)*2
-    y = (y+15)*2
+    x = (x+19)*1.9
+    y = (y+20)*1.9
 
     for i in range(len(x)):
 
         tmp_x = round(x[i])
         tmp_y = round(y[i])
 
-        if tmp_x >= size or tmp_y >= size:
+        if tmp_x >= 60 or tmp_y >= size:
             continue
 
         if (matrix[tmp_x][tmp_y] != None and matrix[tmp_x][tmp_y] < z[i]) or matrix[tmp_x][tmp_y] == None:
@@ -72,14 +72,14 @@ def print_matrix(matrix):
     for x in range(len(matrix)):
         for y in range(len(matrix[x])):
             if matrix[x][y] != None:
-                str += ", "
+                str += ","
             else:
-                str += "  "
+                str += " "
         str += "\n"
     print(str)
 
 
-degree_rotate = math.pi/16
+degree_rotate = math.pi/12
 
 for i in np.arange(0, math.pi*2, degree_rotate):
 
