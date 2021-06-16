@@ -3,9 +3,9 @@ import math
 import time
 
 # 半径
-r = 4
+r = 3
 # 圆心
-a, b = (7.0, 7.0)
+a, b = (7.0, 5.0)
 
 # 光源
 # ax.scatter(0, 30, -10)
@@ -52,8 +52,8 @@ def flat_test(x, y, z):
     # print(min(x[np.argmin(x)],y[np.argmin(y)]))
     if offset < 0:
         offset = abs(min(x[np.argmin(x)],y[np.argmin(y)]))
-    x = (x+offset)*(1+width/200)
-    y = (y+offset)*(1+width/200)
+    x = (x+offset)*1.7
+    y = (y+offset)*2.5
 
     for i in range(len(x)):
 
@@ -85,7 +85,7 @@ def print_matrix(matrix):
     print(str)
 
 
-degree_rotate = math.pi/24
+degree_rotate = math.pi/18
 
 for i in np.arange(0, math.pi*2, degree_rotate):
 
@@ -101,8 +101,9 @@ def drew2():
     newCood = rotate_z(coodX, coodY, coodZ, degree=degree)
     while True:
         print("\x1b\x63", end="")
-        newCood = rotate_x(newCood[0], newCood[1], newCood[2], degree=degree)
         newCood = rotate_y(newCood[0], newCood[1], newCood[2], degree=degree)
+        newCood = rotate_x(newCood[0], newCood[1], newCood[2], degree=degree)
+#        newCood = rotate_z(newCood[0], newCood[1], newCood[2], degree=degree)
         flat_test(newCood[0], newCood[1], newCood[2])
         time.sleep(0.1)
 
