@@ -43,18 +43,19 @@ def flat(x, y, z):
 
 
 def flat_test(x, y, z):
-    size = 80
-    matrix = [[None for i in range(80)] for i in range(60)]
+    width = 80
+    height = 40
+    matrix = [[None for i in range(width)] for i in range(height)]
 
-    x = (x+19)*1.9
-    y = (y+20)*1.9
+    x = (x+10)*1.5
+    y = (y+15)*1.5
 
     for i in range(len(x)):
 
         tmp_x = round(x[i])
         tmp_y = round(y[i])
 
-        if tmp_x >= 60 or tmp_y >= size:
+        if tmp_x >= width or tmp_y >= width:
             continue
 
         if (matrix[tmp_x][tmp_y] != None and matrix[tmp_x][tmp_y] < z[i]) or matrix[tmp_x][tmp_y] == None:
