@@ -72,7 +72,7 @@ def print_matrix(matrix):
     for x in range(len(matrix)):
         for y in range(len(matrix[x])):
             if matrix[x][y] != None:
-                str += "@ "
+                str += ", "
             else:
                 str += "  "
         str += "\n"
