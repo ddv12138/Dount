@@ -42,22 +42,25 @@ def flat(x, y, z):
     return [x, y, newZ]
 
 
+offset = -1
 def flat_test(x, y, z):
+    global offset
     width = 80
     height = 40
     matrix = [[None for i in range(width)] for i in range(height)]
 
     # print(min(x[np.argmin(x)],y[np.argmin(y)]))
-    offset = abs(min(x[np.argmin(x)],y[np.argmin(y)]))
-    x = (x+offset)*1.5
-    y = (y+offset)*1.5
+    if offset < 0:
+        offset = abs(min(x[np.argmin(x)],y[np.argmin(y)]))
+    x = (x+offset)*(1+width/200)
+    y = (y+offset)*(1+width/200)
 
     for i in range(len(x)):
 
         tmp_x = round(x[i])
         tmp_y = round(y[i])
 
-        if tmp_x >= width or tmp_y >= width:
+        if 0 > tmp_x >= width or 0 > tmp_y >= height:
             continue
 
         if (matrix[tmp_x][tmp_y] != None and matrix[tmp_x][tmp_y] < z[i]) or matrix[tmp_x][tmp_y] == None:
