@@ -47,8 +47,10 @@ def flat_test(x, y, z):
     height = 40
     matrix = [[None for i in range(width)] for i in range(height)]
 
-    x = (x+10)*1.5
-    y = (y+15)*1.5
+    # print(min(x[np.argmin(x)],y[np.argmin(y)]))
+    offset = abs(min(x[np.argmin(x)],y[np.argmin(y)]))
+    x = (x+offset)*1.5
+    y = (y+offset)*1.5
 
     for i in range(len(x)):
 
