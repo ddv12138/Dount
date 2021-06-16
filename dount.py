@@ -11,7 +11,7 @@ a, b = (7.0, 0.0)
 light = [-2,-2,-4]
 
 # 画初始圆
-degree_rotate = math.pi/8
+degree_rotate = math.pi/18
 theta = np.arange(0, math.pi*2, degree_rotate)
 x = a + r * np.cos(theta)
 y = b + r * np.sin(theta)
@@ -28,7 +28,7 @@ def rotate_y(x, y, z, degree):
 def rotate_z(x, y, z, degree):
     return [x * math.cos(degree) - y * math.sin(degree), x * math.sin(degree) + y * math.cos(degree), z]
 
-degree_rotate = math.pi/18
+degree_rotate = math.pi/44
 
 coodX = np.array([])
 coodY = np.array([])
@@ -68,9 +68,9 @@ def flat_test(x, y, z,oCood):
         if 0 > tmp_x >= width or 0 > tmp_y >= height:
             continue
 
-        if (matrix[tmp_x][tmp_y] != None and matrix[tmp_x][tmp_y] < z[i]) or matrix[tmp_x][tmp_y] == None:
+        if (matrix[tmp_x][tmp_y] != None and matrix[tmp_x][tmp_y] > z[i]) or matrix[tmp_x][tmp_y] == None:
             # print(len(oCood[0]))
-            tmp = int(i/16)
+            tmp = int(i/36)
             # print(tmp)
             currCircleCenter = [oCood[0][tmp],oCood[1][tmp],oCood[2][tmp]]
             surfaceNormal = [x[i]-currCircleCenter[0],y[i]-currCircleCenter[1],z[i]-currCircleCenter[2]]
