@@ -52,8 +52,8 @@ def flat_test(x, y, z):
     # print(min(x[np.argmin(x)],y[np.argmin(y)]))
     if offset < 0:
         offset = abs(min(x[np.argmin(x)],y[np.argmin(y)]))
-    x = (x+offset)*1.7
-    y = (y+offset)*2.5
+    x = (x+offset+1)*1.7
+    y = (y+offset+1)*3.5
 
     for i in range(len(x)):
 
