@@ -72,14 +72,14 @@ def print_matrix(matrix):
     for x in range(len(matrix)):
         for y in range(len(matrix[x])):
             if matrix[x][y] != None:
-                str += ","
+                str += "."
             else:
                 str += " "
         str += "\n"
     print(str)
 
 
-degree_rotate = math.pi/12
+degree_rotate = math.pi/24
 
 for i in np.arange(0, math.pi*2, degree_rotate):
 
