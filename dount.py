@@ -106,11 +106,11 @@ def drew():
         print("\x1b\x63", end="")
         newCood = rotate_y(newCood[0], newCood[1], newCood[2], degree=degree)
         newCood = rotate_x(newCood[0], newCood[1], newCood[2], degree=degree)
-        # newCood = rotate_z(newCood[0], newCood[1], newCood[2], degree=degree)
+        newCood = rotate_z(newCood[0], newCood[1], newCood[2], degree=degree)
 
         newOCood = rotate_y(newOCood[0], newOCood[1], newOCood[2], degree=degree)
         newOCood = rotate_x(newOCood[0], newOCood[1], newOCood[2], degree=degree)
-        # newOCood = rotate_z(newOCood[0], newOCood[1], newOCood[2], degree=degree)
+        newOCood = rotate_z(newOCood[0], newOCood[1], newOCood[2], degree=degree)
         flat_test(newCood[0], newCood[1], newCood[2],newOCood)
         time.sleep(0.1)
 
