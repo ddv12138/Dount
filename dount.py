@@ -11,7 +11,8 @@ a, b = (7.0, 0.0)
 light = [-2,-2,-4]
 
 # 画初始圆
-degree_rotate = math.pi/18
+rotate_half_round = 16
+degree_rotate = math.pi/rotate_half_round
 theta = np.arange(0, math.pi*2, degree_rotate)
 x = a + r * np.cos(theta)
 y = b + r * np.sin(theta)
@@ -62,13 +63,13 @@ def flat_test(x, y, z,oCood):
 
     for i in range(len(x)):
 
-        tmp_x = round((x[i]+offset+1)*1.7)
+        tmp_x = round((x[i]+offset+3)*1.7)
         tmp_y = round((y[i]+offset+1)*3.5)
 
         if 0 > tmp_x >= width or 0 > tmp_y >= height:
             continue
 
-        tmp = int(i/36)
+        tmp = int(i/(2*rotate_half_round))
         currCircleCenter = [oCood[0][tmp],oCood[1][tmp],oCood[2][tmp]]
         surfaceNormal = [x[i]-currCircleCenter[0],y[i]-currCircleCenter[1],z[i]-currCircleCenter[2]]
         dotProduct = np.dot(light,surfaceNormal)
