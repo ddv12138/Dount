@@ -68,14 +68,12 @@ def flat_test(x, y, z,oCood):
         if 0 > tmp_x >= width or 0 > tmp_y >= height:
             continue
 
+        tmp = int(i/36)
+        currCircleCenter = [oCood[0][tmp],oCood[1][tmp],oCood[2][tmp]]
+        surfaceNormal = [x[i]-currCircleCenter[0],y[i]-currCircleCenter[1],z[i]-currCircleCenter[2]]
+        dotProduct = np.dot(light,surfaceNormal)
+
         if (matrix[tmp_x][tmp_y] != None and matrix[tmp_x][tmp_y] > z[i]) or matrix[tmp_x][tmp_y] == None:
-            # print(len(oCood[0]))
-            tmp = int(i/36)
-            # print(tmp)
-            currCircleCenter = [oCood[0][tmp],oCood[1][tmp],oCood[2][tmp]]
-            surfaceNormal = [x[i]-currCircleCenter[0],y[i]-currCircleCenter[1],z[i]-currCircleCenter[2]]
-            dotProduct = np.dot(light,surfaceNormal)
-            # print(dotProduct)
             if dotProduct>=0:
                 matrix[tmp_x][tmp_y] = dotProduct
 
