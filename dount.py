@@ -112,7 +112,7 @@ def drew():
         newOCood = rotate_x(newOCood[0], newOCood[1], newOCood[2], degree=degree)
         newOCood = rotate_z(newOCood[0], newOCood[1], newOCood[2], degree=degree)
         flat_test(newCood[0], newCood[1], newCood[2],newOCood)
-        time.sleep(0.1)
+        time.sleep(0.07)
 
 
 def main():
